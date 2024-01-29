@@ -1,11 +1,11 @@
 const express = require('express');
 const app = express();
 const fs = require('fs');
-const https = require('https');
+const http = require('https');
 const path = require('path');
 const WebSocket = require('ws');
 
-const server = https.createServer({
+const server = http.createServer({
     key: fs.readFileSync(path.resolve('cert/key.pem')),
     cert: fs.readFileSync(path.resolve('cert/cert.pem'))
 }, app);
@@ -23,6 +23,6 @@ wss.on('connection', ws => {
 app.get('/', (req, res) => res.send('Hello World!'));
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
+server.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
