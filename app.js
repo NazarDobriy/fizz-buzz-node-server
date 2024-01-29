@@ -6,8 +6,8 @@ const path = require('path');
 const WebSocket = require('ws');
 
 const server = https.createServer({
-    key: fs.readFileSync(path.join(__dirname, 'cert', 'key.pem')),
-    cert: fs.readFileSync(path.join(__dirname, 'cert', 'cert.pem'))
+    key: fs.readFileSync(path.resolve('cert/key.pem')),
+    cert: fs.readFileSync(path.resolve('cert/cert.pem'))
 }, app);
 
 const wss = new WebSocket.Server({ server });
