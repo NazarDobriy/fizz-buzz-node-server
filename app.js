@@ -10,7 +10,7 @@ const server = https.createServer({
     cert: fs.readFileSync(path.resolve('cert/cert.pem'))
 }, app);
 
-const wss = new WebSocket.Server({ server: server });
+const wss = new WebSocket.Server({ server });
 
 wss.on('connection', ws => {
   console.log('A new client connected!');
@@ -18,11 +18,4 @@ wss.on('connection', ws => {
   ws.on('message', message => {
     console.log('received: %s', message);
   });
-});
-
-app.get('/', (req, res) => res.send('Hello World!'));
-
-const PORT = process.env.PORT || 3000;
-server.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
 });
